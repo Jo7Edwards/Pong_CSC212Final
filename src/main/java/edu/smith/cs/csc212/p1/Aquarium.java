@@ -12,6 +12,9 @@ import me.jjfoley.gfx.GFX;
 
 public class Aquarium extends GFX {
 	 //GFX win 500 by 500? 
+	public Aquarium() {
+		//startGame(true);
+	}
 	
 	//For Y, 0 its at the top edge and getHeight() is at bottom edge 
 
@@ -23,38 +26,48 @@ public class Aquarium extends GFX {
 	int lPaddleX = 75;
 	
 	//Make our paddles 
-	Paddle LPaddle = new Paddle(Color.blue, lPaddleX, getHeight()/2, false);
-	Paddle RPaddle = new Paddle(Color.cyan, rPaddleX, getHeight()/2, true);
+	AbstractPaddle LPaddle;
+	AbstractPaddle RPaddle;
+	Ball ball;
 	
-	Ball ball = new Ball(Color.orange, getWidth()/2, getHeight()/2, RPaddle, LPaddle);
+	boolean onTitleScreen = true;
+
+	
+	public void startGame(boolean singlePlayer) {
+		if (singlePlayer) {
+			LPaddle = new AIPaddle(Color.blue, lPaddleX, getHeight()/2);
+		} else {
+		LPaddle = new Paddle(Color.blue, lPaddleX, getHeight()/2, false);
+		}
+		RPaddle = new Paddle(Color.cyan, rPaddleX, getHeight()/2, true);
+		ball = new Ball(Color.orange, getWidth()/2, getHeight()/2, RPaddle, LPaddle);
+		onTitleScreen = false;
+	}
+	
 
 	@Override
 	public void draw(Graphics2D g) {
-		// Draw the "ocean" background.
+		// Draw the background, set the window 
 		g.setColor(Color.white);
 		g.fillRect(0, 0, getWidth(), getHeight());
 		
-		LPaddle.draw(g, this);
-		RPaddle.draw(g, this); //pass this to give it GFX / access to window 
+		if (onTitleScreen) {
+			// draw title screen
+			if (this.processClick() != null) {
+				startGame(true);
+			}
+		} else {
 		
-		ball.draw(g);
+		
+			LPaddle.draw(g, this);
+			RPaddle.draw(g, this); //pass 'this' to give it GFX / access to window 
+			
+			ball.draw(g);
+		}
 		
 	
 		
-		//Creatures.drawFishFacingLeft(g, Color.yellow, rPaddleX, 200);
-		//Creatures.drawFishFacingLeft(g, Color.cyan, lPaddleX, 200);
 		
-		/*// Draw the fish!
-		Creatures.drawFishFacingLeft(g, Color.yellow, fish1X, 200);
-		// Draw the confused fish!
-		Creatures.drawFishFacingRight(g, Color.green, fish2X, 300);
-
-		// What if we wanted this little fish to swim, too?
-		Creatures.drawSmallFishFacingLeft(g, Color.red, 200, 100);
-
-		// Move the fish!
-		fish1X -= 1;
-		fish2X -= 2;*/
 	}
 	
 	public boolean getUp() {

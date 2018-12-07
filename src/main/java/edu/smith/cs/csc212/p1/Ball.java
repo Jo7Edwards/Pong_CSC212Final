@@ -23,8 +23,8 @@ public class Ball {
 	double speedy;
 	int speed;
 	
-	Paddle paddleL;
-	Paddle paddleR;
+	AbstractPaddle paddleL;
+	AbstractPaddle paddleR;
 	
 	
 	Random rand = new Random();
@@ -32,7 +32,7 @@ public class Ball {
 	int DestY = rand.nextInt(500);
 	double newthing = rand.nextDouble();
 	
-	public Ball(Color color, int x, int y, Paddle Rpaddle, Paddle Lpaddle) {
+	public Ball(Color color, int x, int y, AbstractPaddle Rpaddle, AbstractPaddle Lpaddle) {
 		this.color = color;
 		this.y = y;
 		this.x = x; 
@@ -172,11 +172,16 @@ public class Ball {
 		this.speedy = movey;
 	}
 	
-	public void checkInPaddle(Paddle paddle) {
+	public void checkInPaddle(AbstractPaddle paddle) {
 		if (this.travelR ==true) {
 			if ( paddle.x <= this.x && this.x < paddle.x + paddle.width) {
-				if (paddle.y <= this.y && this.y < paddle.y + paddle.height) {
+				if (paddle.y <= this.y && this.y < paddle.y + paddle.height) { // make sure within x and y boundaries of paddle 
 					speedx = 0- speedx;
+					
+					
+					
+					
+					
 				}
 			}
 		} else if (this.travelR == false) {
