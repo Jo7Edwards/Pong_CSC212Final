@@ -23,8 +23,8 @@ public class Aquarium extends GFX {
 	int lPaddleX = 75;
 	
 	//Make our paddles 
-	Paddle LPaddle = new Paddle(Color.blue, lPaddleX, getHeight()/2);
-	Paddle RPaddle = new Paddle(Color.cyan, rPaddleX, getHeight()/2);
+	Paddle LPaddle = new Paddle(Color.blue, lPaddleX, getHeight()/2, false);
+	Paddle RPaddle = new Paddle(Color.cyan, rPaddleX, getHeight()/2, true);
 	
 	Ball ball = new Ball(Color.orange, getWidth()/2, getHeight()/2, RPaddle, LPaddle);
 

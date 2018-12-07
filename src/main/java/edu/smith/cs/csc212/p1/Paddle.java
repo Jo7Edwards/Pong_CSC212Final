@@ -17,17 +17,25 @@ public class Paddle{
 	int height;
 	Color color;
 	
+	String upKey;
+	String downKey;
+	
+	Boolean isPlayerOne;
+	
 	
 	Random rand = new Random();
 	
 	//int DestX = rand.nextInt
 	
-	public Paddle(Color color, int x, int y) {
+	public Paddle(Color color, int x, int y, boolean isPlayer) {
 		this.color = color;
 		this.y = y;
 		this.x = x;
 		this.width = 10;
 		this.height = 55;
+		
+		this.isPlayerOne = isPlayer;
+		
 		
 		
 		
@@ -59,11 +67,22 @@ public class Paddle{
 			this.y += speed;
 		}
 		
-		//move if key is pressed down 
-		if (window.isKeyDown(KeyEvent.VK_UP)) {
-			this.y -= speed;
-		} else if (window.isKeyDown(KeyEvent.VK_DOWN)) {
-			this.y += speed;
+		
+		
+		//move if key is pressed down
+		//Move player one with up and down arrow keys and move player 2 with w and s keys  
+		if (this.isPlayerOne == true) {
+			if (window.isKeyDown(KeyEvent.VK_UP)) {
+				this.y -= speed;
+			} else if (window.isKeyDown(KeyEvent.VK_DOWN)) {
+				this.y += speed;
+			}
+		} else if (this.isPlayerOne == false) {
+			if (window.isKeyDown(KeyEvent.VK_W)) {
+				this.y -= speed;
+			} else if (window.isKeyDown(KeyEvent.VK_S)) {
+				this.y += speed;
+			}
 		}
 		
 		
