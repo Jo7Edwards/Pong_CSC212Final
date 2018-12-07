@@ -131,6 +131,7 @@ public class Ball {
 		}
 		
 		//check if hitting a paddle 
+		//If the ball is traveling to the right, should only hit the right paddle
 		if (speedx > 0) {
 			checkInPaddle(paddleR);
 		} else {
