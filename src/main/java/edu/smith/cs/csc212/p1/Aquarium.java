@@ -4,17 +4,19 @@ import java.awt.Color;
 
 
 import java.awt.Graphics2D;
+import java.awt.event.KeyEvent;
 
 import me.jjfoley.gfx.GFX;
 
 //Cite: https://docs.oracle.com/javase/7/docs/api/java/awt/Shape.html
 
 public class Aquarium extends GFX {
-	//GFX win 500 by 500? 
+	 //GFX win 500 by 500? 
 	
 	//For Y, 0 its at the top edge and getHeight() is at bottom edge 
 
-	
+	public boolean up = false;
+	boolean down = false;
 	
 	//Right and left paddle x distances from edge of win
 	int rPaddleX = getWidth() -75;
@@ -24,7 +26,7 @@ public class Aquarium extends GFX {
 	Paddle LPaddle = new Paddle(Color.blue, lPaddleX, getHeight()/2);
 	Paddle RPaddle = new Paddle(Color.cyan, rPaddleX, getHeight()/2);
 	
-	Ball ball = new Ball(Color.orange, getWidth()/2, getHeight()/2);
+	Ball ball = new Ball(Color.orange, getWidth()/2, getHeight()/2, RPaddle, LPaddle);
 
 	@Override
 	public void draw(Graphics2D g) {
@@ -32,10 +34,12 @@ public class Aquarium extends GFX {
 		g.setColor(Color.white);
 		g.fillRect(0, 0, getWidth(), getHeight());
 		
-		LPaddle.draw(g);
-		RPaddle.draw(g);
+		LPaddle.draw(g, this);
+		RPaddle.draw(g, this); //pass this to give it GFX / access to window 
 		
 		ball.draw(g);
+		
+	
 		
 		//Creatures.drawFishFacingLeft(g, Color.yellow, rPaddleX, 200);
 		//Creatures.drawFishFacingLeft(g, Color.cyan, lPaddleX, 200);
@@ -51,6 +55,10 @@ public class Aquarium extends GFX {
 		// Move the fish!
 		fish1X -= 1;
 		fish2X -= 2;*/
+	}
+	
+	public boolean getUp() {
+		return this.up;
 	}
 
 	public static void main(String[] args) {

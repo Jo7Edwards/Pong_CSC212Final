@@ -15,6 +15,7 @@ public class Ball {
 	Color color;
 	boolean travelR = true;
 	boolean travelUp = true;
+	boolean inPaddle = false;
 	
 	int size = 12;
 	
@@ -22,13 +23,16 @@ public class Ball {
 	double speedy;
 	int speed;
 	
+	Paddle paddleL;
+	Paddle paddleR;
+	
 	
 	Random rand = new Random();
 	int DestX = 500;
 	int DestY = rand.nextInt(500);
 	double newthing = rand.nextDouble();
 	
-	public Ball(Color color, int x, int y) {
+	public Ball(Color color, int x, int y, Paddle Rpaddle, Paddle Lpaddle) {
 		this.color = color;
 		this.y = y;
 		this.x = x; 
@@ -37,6 +41,9 @@ public class Ball {
 		
 		this.speedx = 2;
 		this.speedy = 0.8;
+		
+		this.paddleR = Rpaddle;
+		this.paddleL = Lpaddle;
 		
 		//int subY = this.y;
 		//int distY = DestY - subY;
@@ -58,6 +65,7 @@ public class Ball {
 	public void MoveBall(Graphics2D g) {
 		int speed = 1;
 		
+		this.inPaddle = false; 
 		
 		
 		/*x needs to always be moving +1 or -1, but Y can have random placement 
@@ -122,6 +130,13 @@ public class Ball {
 			speedx = 0 - speedx;
 		}
 		
+		//check if hitting a paddle 
+		if (speedx > 0) {
+			checkInPaddle(paddleR);
+		} else {
+			checkInPaddle(paddleL);
+		}
+		
 		
 		
 	}
@@ -154,5 +169,23 @@ public class Ball {
 		
 		this.speedx = movex;
 		this.speedy = movey;
+	}
+	
+	public void checkInPaddle(Paddle paddle) {
+		if (this.travelR ==true) {
+			if ( paddle.x <= this.x && this.x < paddle.x + paddle.width) {
+				if (paddle.y <= this.y && this.y < paddle.y + paddle.height) {
+					speedx = 0- speedx;
+				}
+			}
+		} else if (this.travelR == false) {
+			if (this.x <= paddle.x+paddle.width && paddle.x < this.x) {
+				if (paddle.y <= this.y && this.y < paddle.y + paddle.height) {
+					speedx = 0-speedx;
+				}
+			}
+		}
+		
+		
 	}
 }

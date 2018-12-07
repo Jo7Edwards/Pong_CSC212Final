@@ -9,11 +9,14 @@ import java.util.Random;
 
 import me.jjfoley.gfx.GFX;
 
-public class Paddle {
+public class Paddle{
 	
 	int x;
 	int y;
+	int width;
+	int height;
 	Color color;
+	
 	
 	Random rand = new Random();
 	
@@ -23,24 +26,38 @@ public class Paddle {
 		this.color = color;
 		this.y = y;
 		this.x = x;
+		this.width = 10;
+		this.height = 55;
+		
+		
+		
+		
 		
 	}
 	
-	public void draw(Graphics2D g) {
-		//Set to specified color (make color change every time ball is hit with paddle? 
+	public void draw(Graphics2D g, GFX window) {
+		//Set to specified color (make color change every time ball is hit with paddle?
+		
+		
+		MovePaddle(g, window);
+		
 		g.setColor(color);
 		
-		Shape paddle = new Rectangle2D.Double(x, y, 10, 55);
+		Shape paddle = new Rectangle2D.Double(x, y, width, height);
 		
 		g.fill(paddle);
 		g.draw(paddle);
 	}
 	
-	public void MovePaddle(GFX window) {
+	public void MovePaddle(Graphics2D g, GFX window) {
+		int speed = 3; 
+		
 		if (window.isKeyDown(KeyEvent.VK_UP)) {
-			
+			this.y -= 1;
+		} else if (window.isKeyDown(KeyEvent.VK_DOWN)) {
+			this.y += 1;
 		}
-		int speed = 1; 
+		
 		
 		
 	}
