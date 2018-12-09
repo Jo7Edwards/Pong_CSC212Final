@@ -15,6 +15,12 @@ public abstract class AbstractPaddle {
 	Color color;
 	int speed;
 	
+	/**
+	 * 
+	 * @param color
+	 * @param x
+	 * @param y
+	 */
 	public AbstractPaddle(Color color, int x, int y) {
 		this.color = color;
 		this.y = y;

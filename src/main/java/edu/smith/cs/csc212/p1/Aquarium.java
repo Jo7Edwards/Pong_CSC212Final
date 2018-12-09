@@ -1,10 +1,11 @@
 package edu.smith.cs.csc212.p1;
 
 import java.awt.Color;
-
-
+import java.awt.Font;
 import java.awt.Graphics2D;
+import java.awt.Shape;
 import java.awt.event.KeyEvent;
+import java.awt.geom.Rectangle2D;
 
 import me.jjfoley.gfx.GFX;
 
@@ -31,6 +32,7 @@ public class Aquarium extends GFX {
 	Ball ball;
 	
 	boolean onTitleScreen = true;
+	//boolean titleScreenOn = true;
 
 	
 	public void startGame(boolean singlePlayer) {
@@ -51,18 +53,22 @@ public class Aquarium extends GFX {
 		g.setColor(Color.white);
 		g.fillRect(0, 0, getWidth(), getHeight());
 		
+		TitleScreen title = new TitleScreen();
+		//This is to draw the title screen
 		if (onTitleScreen) {
 			// draw title screen
+			title.drawTitle(g);
 			if (this.processClick() != null) {
+				title.titleScreenOn = false; 
 				startGame(true);
 			}
 		} else {
-		
-		
+			
+			ball.draw(g);
 			LPaddle.draw(g, this);
 			RPaddle.draw(g, this); //pass 'this' to give it GFX / access to window 
 			
-			ball.draw(g);
+			
 		}
 		
 	
@@ -73,6 +79,8 @@ public class Aquarium extends GFX {
 	public boolean getUp() {
 		return this.up;
 	}
+	
+	
 
 	public static void main(String[] args) {
 		// Note that we can store an Aquarium in a variable of type GFX because Aquarium

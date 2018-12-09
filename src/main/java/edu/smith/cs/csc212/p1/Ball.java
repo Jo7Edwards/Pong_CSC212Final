@@ -138,6 +138,12 @@ public class Ball {
 			checkInPaddle(paddleL);
 		}
 		
+		if (speedx > 0) {
+			this.travelR = true;
+		} else {
+			this.travelR = false;
+		}
+		
 		
 		
 	}
@@ -173,20 +179,19 @@ public class Ball {
 	}
 	
 	public void checkInPaddle(AbstractPaddle paddle) {
+		//copy this exactly to left travelling, and then edit for right travelling 
 		if (this.travelR ==true) {
-			if ( paddle.x <= this.x && this.x < paddle.x + paddle.width) {
+			if ( paddle.x -10 <= this.x && this.x < paddle.x + paddle.width) {
 				if (paddle.y <= this.y && this.y < paddle.y + paddle.height) { // make sure within x and y boundaries of paddle 
-					speedx = 0- speedx;
-					
-					
-					
-					
+					speedx = 0- speedx;	
+					System.out.println(this.x + "& y: " + this.y);
 					
 				}
 			}
 		} else if (this.travelR == false) {
 			if (this.x <= paddle.x+paddle.width && paddle.x < this.x) {
 				if (paddle.y <= this.y && this.y < paddle.y + paddle.height) {
+					System.out.println("wowzers");
 					speedx = 0-speedx;
 				}
 			}

@@ -14,7 +14,7 @@ public class AIPaddle extends AbstractPaddle {
 	@Override
 	public void MovePaddle(Graphics2D g, GFX window) {
 		// TODO Auto-generated method stub
-		this.y -= 1;
+		//this.y -= 1;
 	}
 
 
