@@ -11,8 +11,6 @@ import me.jjfoley.gfx.GFX;
 
 public class Paddle extends AbstractPaddle {
 		
-	String upKey;
-	String downKey;
 	
 	Boolean isPlayerOne;
 	
@@ -32,7 +30,7 @@ public class Paddle extends AbstractPaddle {
 	
 	
     @Override
-	public void MovePaddle(Graphics2D g, GFX window) { 
+	public void MovePaddle(Graphics2D g, GFX window, Ball ball) { 
 		//move if key is pressed down
 		//Move player one with up and down arrow keys and move player 2 with w and s keys  
 		if (this.isPlayerOne) {

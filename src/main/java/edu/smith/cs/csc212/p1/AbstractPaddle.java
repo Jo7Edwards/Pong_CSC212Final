@@ -25,16 +25,16 @@ public abstract class AbstractPaddle {
 		this.color = color;
 		this.y = y;
 		this.x = x;
-		this.width = 10;
+		this.width = 15;
 		this.height = 55;
 		this.speed = 3;
 	}
 	
-	public void draw(Graphics2D g, GFX window) {
+	public void draw(Graphics2D g, GFX window, Ball ball) {
 		//Set to specified color (make color change every time ball is hit with paddle?
 		
 		stayOnScreen();
-		MovePaddle(g, window);
+		MovePaddle(g, window, ball);
 		
 		
 		g.setColor(color);
@@ -56,5 +56,5 @@ public abstract class AbstractPaddle {
 
 	//ABSTRACT here means that each individual paddle needs to write this method for itself, but that
 	//it should have this method 
-	public abstract void MovePaddle(Graphics2D g, GFX window);
+	public abstract void MovePaddle(Graphics2D g, GFX window, Ball ball);
 }

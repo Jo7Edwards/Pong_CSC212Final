@@ -19,18 +19,18 @@ public class TitleScreen {
 	public void drawTitle(Graphics2D g) {
 		if (this.titleScreenOn == true) {
 			//draw title screen
-			g.setColor(Color.GRAY);
+			g.setColor(Color.lightGray);
 			
-			Shape title = new Rectangle2D.Double(50, 50, 400, 400);
+			Shape title = new Rectangle2D.Double(50, 50, 365, 400);
 			
 			g.fill(title);
 			g.draw(title);
 			
-			drawWords(g, 60, 60, 340, 100, Color.black, "Click which modes to play");
+			/*drawWords(g, 60, 60, 340, 100, Color.black, "Click which modes to play");
 			drawWords(g, 60, 200, 150, 100, Color.BLUE, "1-player");
 			drawWords(g, 250, 200, 150, 100, Color.red, "2-player");
 			drawWords(g, 60, 320, 150, 100, Color.green, "Endless");
-			drawWords(g, 250, 320, 150, 100, Color.magenta, "Play to win");
+			drawWords(g, 250, 320, 150, 100, Color.magenta, "Play to win");*/
 		}
 	}
 	
@@ -44,7 +44,7 @@ public class TitleScreen {
 	 * @param color
 	 * @param words
 	 */
-	public void drawWords(Graphics2D g,int x, int y, int width, int height, Color color, String words) {
+	public Rectangle2D drawWords(Graphics2D g,int x, int y, int width, int height, Color color, String words) {
 		g.setColor(color);
 		g.fillRect(x, y, width, height);
 		
@@ -53,6 +53,8 @@ public class TitleScreen {
 		
 		g.setColor(Color.white);
 		g.drawString(words, x + (width/10), y + (height/2)); 
+		
+		return new Rectangle2D.Double(x,y,width,height);
 	}
 
 }
