@@ -9,7 +9,7 @@ public class SaveAquariumGIF {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		Aquarium app = new Aquarium();
+		PongGame app = new PongGame();
 		int numSeconds = 3;
 		app.playToGIF(new File("aquarium.gif"), 50 * numSeconds);
 	}

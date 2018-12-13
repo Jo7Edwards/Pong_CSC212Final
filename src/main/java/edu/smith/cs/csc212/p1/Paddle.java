@@ -11,13 +11,8 @@ import me.jjfoley.gfx.GFX;
 
 public class Paddle extends AbstractPaddle {
 		
-	
+	//Is this paddle player one? determines what keys move the paddle 
 	Boolean isPlayerOne;
-	
-	
-	Random rand = new Random();
-	
-	//int DestX = rand.nextInt
 	
 	public Paddle(Color color, int x, int y, boolean isPlayer) {
 		super(color, x, y);

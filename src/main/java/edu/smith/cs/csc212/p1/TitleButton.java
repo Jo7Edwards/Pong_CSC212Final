@@ -9,8 +9,8 @@ import me.jjfoley.gfx.GFX;
 import me.jjfoley.gfx.IntPoint;
 
 /**
- * The title buttons that should appear on the title screen for you to click. Allows it to appear 
- * "clicked" by darkening color and "unclicked" by being the regular color
+ * The title buttons that should appear on the title screen for user to click. Allows it to appear 
+ * "clicked"/"selected" by darkening color and "unclicked"/"unselected" by being the regular color
  * @author Jo
  *
  */
@@ -21,6 +21,7 @@ public class TitleButton {
 	int height;
 	Color color;
 	String words;
+	String subWords;
 	Rectangle2D area;
 	
 	/**
@@ -33,15 +34,17 @@ public class TitleButton {
 	boolean wasClicked = false;
 	
 	/**
+	 * Create a button consisting of a rectangle and some words.
 	 * 
 	 * @param x - x coordinate of button's rectangle
 	 * @param y - y coordinate of button's rectangle
 	 * @param width - width of button's rectangle
 	 * @param height - height of button's rectangle 
 	 * @param color - the color the button should be 
-	 * @param words - words that should appear on the button 
+	 * @param words - words that should appear on the button
+	 * @param subWords - words that should appear under main button words, like a subtitle  
 	 */
-	public TitleButton( int x, int y, int width, int height, Color color, String words) {
+	public TitleButton( int x, int y, int width, int height, Color color, String words, String subWords) {
 		this.x = x;
 		this.y = y;
 		this.width = width;
@@ -52,36 +55,52 @@ public class TitleButton {
 		
 		this.colorcopy = color;
 		this.colorchange = color.darker();
-		
-		
-		
-		
+		this.subWords = subWords;
 	}
 	
+	
 	public void draw(Graphics2D g) {
-		/*if(wasClicked) {
-			this.color = Color.darkGray;
-		} else {
-			this.color = Color.lightGray;
-		}*/
+		/*
+		 * if it was clicked on, that means it was selected and 
+		 * changed the color to darker so it is visually easy for user to tell
+		 */
 		if (wasClicked) {
 			this.color = colorchange;
 		} else {
 			this.color = colorcopy;
 		}
 		
+		/*
+		 * draw button's rectangle and any words it should have
+		 */
 		g.setColor(color);
 		g.fillRect(x, y, width, height);
 		
 		Font font = g.getFont();
 		g.setFont(font.deriveFont(25f));
-		
 		g.setColor(Color.white);
 		g.drawString(words, x + (width/10), y + (height/2)); 
+		
+		Font subFont = g.getFont();
+		if (subWords.length() > 25) { //If the subwords are long 
+			g.setFont(subFont.deriveFont(10f));
+			g.setColor(Color.white);
+			g.drawString(subWords, (x + (width/10)) - 12, (y + (height/2)) + 20);
+		} else {
+			g.setFont(subFont.deriveFont(14f));
+			g.setColor(Color.white);
+			g.drawString(subWords, (x + (width/10)) - 7, (y + (height/2)) + 20);
+		}
+		
 		
 		
 	}
 	
+	/**
+	 * 
+	 * @param click
+	 * @return true if user clicked within the button's rectangle 
+	 */
 	public boolean contains(IntPoint click) {
 		if (area.contains(click)) {
 			return true;
@@ -89,12 +108,6 @@ public class TitleButton {
 			return false;
 		}
 	}
-	/**
-	 * 
-	 * @return if its true that the button was clicked on 
-	 
-	public boolean checkIfClicked() {
-		
-	}*/
+	
 
 }

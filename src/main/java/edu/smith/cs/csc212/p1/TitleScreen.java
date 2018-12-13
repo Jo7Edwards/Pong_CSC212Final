@@ -11,6 +11,10 @@ public class TitleScreen {
 	boolean titleScreenOn = true;
 	boolean clicked = false; 
 	
+	/**
+	 * Makes a "TitleScreen", really acts as the 
+	 * background rectangle any time a screen is being displayed 
+	 */
 	public TitleScreen() {
 		
 	}
@@ -26,35 +30,9 @@ public class TitleScreen {
 			g.fill(title);
 			g.draw(title);
 			
-			/*drawWords(g, 60, 60, 340, 100, Color.black, "Click which modes to play");
-			drawWords(g, 60, 200, 150, 100, Color.BLUE, "1-player");
-			drawWords(g, 250, 200, 150, 100, Color.red, "2-player");
-			drawWords(g, 60, 320, 150, 100, Color.green, "Endless");
-			drawWords(g, 250, 320, 150, 100, Color.magenta, "Play to win");*/
 		}
 	}
 	
-	/**
-	 * This is to auto make text, and auto makes a box behind it 
-	 * @param g
-	 * @param x
-	 * @param y
-	 * @param width
-	 * @param height
-	 * @param color
-	 * @param words
-	 */
-	public Rectangle2D drawWords(Graphics2D g,int x, int y, int width, int height, Color color, String words) {
-		g.setColor(color);
-		g.fillRect(x, y, width, height);
-		
-		Font font = g.getFont();
-		g.setFont(font.deriveFont(25f));
-		
-		g.setColor(Color.white);
-		g.drawString(words, x + (width/10), y + (height/2)); 
-		
-		return new Rectangle2D.Double(x,y,width,height);
-	}
+
 
 }

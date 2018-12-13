@@ -16,10 +16,12 @@ public abstract class AbstractPaddle {
 	int speed;
 	
 	/**
+	 * Abstract class for all paddles. Sets how they should appear, that they should all 
+	 * not move off the screen, and says each kind of paddle needs to determine their own MovePaddle method 
 	 * 
-	 * @param color
-	 * @param x
-	 * @param y
+	 * @param color - Color of paddle 
+	 * @param x - x coordinate of paddle's rectangle
+	 * @param y - y coordinate of paddle's rectangle
 	 */
 	public AbstractPaddle(Color color, int x, int y) {
 		this.color = color;
@@ -45,6 +47,9 @@ public abstract class AbstractPaddle {
 		g.draw(paddle);
 	}
 	
+	/**
+	 * keeps paddles from moving off the screen
+	 */
 	public void stayOnScreen() {
 		//keep the paddles from moving off the screen
 		if (this.y + height >= 500) {
@@ -54,7 +59,17 @@ public abstract class AbstractPaddle {
 		}
 	}
 
-	//ABSTRACT here means that each individual paddle needs to write this method for itself, but that
-	//it should have this method 
+	
+	/**
+	 * How the paddle should move. What pressed keys should make it move? or should it move automatically? 
+	 * "abstract" here means that each kind of paddle needs to write this method for itself 
+	 * 
+	 * @param Graphics2D g
+	 * @param window 
+	 * @param ball
+	 */
 	public abstract void MovePaddle(Graphics2D g, GFX window, Ball ball);
 }
+
+
+
